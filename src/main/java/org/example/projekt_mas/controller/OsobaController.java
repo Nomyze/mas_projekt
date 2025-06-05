@@ -1,21 +1,12 @@
 package org.example.projekt_mas.controller;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import org.example.projekt_mas.DTOs.KarnetDTO;
+import org.example.projekt_mas.DTOs.Kupiony_karnetDTO;
 import org.example.projekt_mas.model.Karnet;
 import org.example.projekt_mas.model.Kupiony_karnet;
-import org.example.projekt_mas.model.Osoba;
 import org.example.projekt_mas.service.OsobaService;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -52,18 +43,3 @@ public class OsobaController {
     }
 }
 
-class KarnetDTO {
-    public long id;
-    public Integer dlugosc;
-    public Double cena;
-    public Set<Kupiony_karnetDTO> kupioneEgzemplarze;
-}
-
-class Kupiony_karnetDTO {
-    public long id;
-    public LocalDate dataOd;
-    public LocalDate dataDo;
-    public Integer iloscKupiony;
-    public long klient_id;
-    public long karnet_id;
-}

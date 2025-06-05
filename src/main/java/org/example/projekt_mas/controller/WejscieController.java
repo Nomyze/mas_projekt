@@ -1,19 +1,11 @@
 package org.example.projekt_mas.controller;
 
-import org.example.projekt_mas.model.Osoba;
-import org.example.projekt_mas.model.OsobaType;
+import org.example.projekt_mas.DTOs.WejscieDTO;
 import org.example.projekt_mas.model.Wejscie;
-import org.example.projekt_mas.repository.OsobaRepository;
-import org.example.projekt_mas.repository.WejscieRepository;
 import org.example.projekt_mas.service.WejscieService;
-import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -50,18 +42,3 @@ public class WejscieController {
     }
 }
 
-class WejscieDTO {
-    public int id;
-    public LocalDateTime czas_wejscia;
-    public double cena_wejscia;
-    public int klient_id;
-
-    public static WejscieDTO from(Wejscie wejscie) {
-        WejscieDTO dto = new WejscieDTO();
-        dto.id = wejscie.getId();
-        dto.czas_wejscia = wejscie.getCzas_wejscia();
-        dto.cena_wejscia = wejscie.getCena_wejscia();
-        dto.klient_id = wejscie.getKlient().getId();
-        return dto;
-    }
-}
