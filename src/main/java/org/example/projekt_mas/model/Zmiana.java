@@ -1,13 +1,12 @@
 package org.example.projekt_mas.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
+import org.example.projekt_mas.Annotation.Subset;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,12 +14,14 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Subset
 public class Zmiana {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotNull
+    @FutureOrPresent
     private LocalDate data;
 
     @NotNull
@@ -28,10 +29,11 @@ public class Zmiana {
     @Max(3)
     private Integer numerZmiany;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany
     @JoinTable(name = "pracownicy", joinColumns = @JoinColumn(name = "zmiana_id"), inverseJoinColumns = @JoinColumn(name = "pracownik_id"))
     @Size(min = 2)
-    private Set<Osoba> pracownicy;
+    @Builder.Default
+    private Set<Osoba> pracownicy = new HashSet<>();
 
     @OneToOne(mappedBy = "przewodzi")
     @NotNull
@@ -40,5 +42,6 @@ public class Zmiana {
     @OneToMany(mappedBy = "zmiana", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private Set<Uwaga> uwagi;
+    @Builder.Default
+    private Set<Uwaga> uwagi = new HashSet<>();
 }

@@ -17,4 +17,12 @@ public class KarnetService {
     public List<Karnet> getAllKarnets() {
         return karnetRepository.findAll();
     }
+
+    public Karnet createKarnet(double cena, int dlugosc) {
+        Karnet karnet = Karnet.builder()
+                .cena(cena)
+                .dlugosc(dlugosc)
+                .build();
+        return karnetRepository.save(karnet);
+    }
 }

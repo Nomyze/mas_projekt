@@ -19,14 +19,14 @@ public class Menadzer_zmiany {
     private int id;
 
     @NotNull
+    @Builder.Default
     @Min(0)
-    private Double premiaHistoryczna;
+    private Double premiaHistoryczna = premiaZaZmiane;
 
     private static Double premiaZaZmiane = 40.0;
 
     @OneToOne
     @JoinColumn(name = "zmiana_id", referencedColumnName = "id")
-    @NotNull
     private Zmiana przewodzi;
 
     @ManyToOne

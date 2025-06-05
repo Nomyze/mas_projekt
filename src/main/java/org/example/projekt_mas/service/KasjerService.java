@@ -2,12 +2,9 @@ package org.example.projekt_mas.service;
 
 import org.example.projekt_mas.model.Instruktor;
 import org.example.projekt_mas.model.Kasjer;
-import org.example.projekt_mas.model.Zajecia;
 import org.example.projekt_mas.model.Zmiana;
 import org.example.projekt_mas.repository.InstruktorRepository;
 import org.example.projekt_mas.repository.KasjerRepository;
-import org.example.projekt_mas.repository.Menadzer_zmianyRepository;
-import org.example.projekt_mas.repository.ZmianaRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -55,5 +52,16 @@ public class KasjerService {
             }
         }
         return sum;
+    }
+
+    public Kasjer createKasjer(String imie, String nazwisko, String email, double stawka, LocalDate data) {
+        Kasjer kasjer = Kasjer.builder()
+                .imie(imie)
+                .nazwisko(nazwisko)
+                .email(email)
+                .stawkaGodzinowa(stawka)
+                .zatrudnionyOd(data)
+                .build();
+        return kasjerRepository.save(kasjer);
     }
 }

@@ -21,7 +21,7 @@ public class WejscieController {
         return wejscieService.czyJednorazowe(id);
     }
 
-    @GetMapping("/klient/{id}/wejscia")
+    @GetMapping("/klienci/{id}/wejscia")
     Set<WejscieDTO> wyswietlWejscia(@PathVariable Long id) {
         Set<Wejscie> wejscia = wejscieService.wyswietlWejscia(id);
         Set<WejscieDTO> dtos = new HashSet<>();
@@ -32,13 +32,13 @@ public class WejscieController {
         return dtos;
     }
 
-    @PutMapping("/wejscia")
-    int przetworzWejscie(@RequestBody Long klient_id) {
+    @PostMapping("/wejscia")
+    WejscieDTO przetworzWejscie(@RequestBody Long klient_id) {
         Wejscie wejscie = wejscieService.przetworzWejscie(klient_id);
         if(wejscie == null) {
-            return 0;
+            throw new IllegalArgumentException("Nie udało się przetworzyć wejścia");
         }
-        return wejscie.getId();
+        return WejscieDTO.from(wejscie);
     }
 }
 

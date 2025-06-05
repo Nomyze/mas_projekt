@@ -3,12 +3,10 @@ package org.example.projekt_mas.model;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,7 +17,7 @@ public class Kasjer extends Osoba {
     @Min(0)
     @Builder.Default
     @NotNull
-    private Integer sprzedaneKarnety = 0;
+    private int sprzedaneKarnety = 0;
 
     private static Double bonusZaKarnet = 20.0;
 }
