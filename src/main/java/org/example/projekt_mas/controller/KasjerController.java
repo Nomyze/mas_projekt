@@ -15,8 +15,8 @@ public class KasjerController {
     }
 
     @GetMapping("/kasjerzy/{id}/wynagrodzenie")
-    Double obliczWynagrodzenie(@PathVariable Long id, @RequestBody LocalDate from, @RequestBody LocalDate to) {
-        return kasjerService.obliczWynagrodzenie(id, from, to);
+    Double obliczWynagrodzenie(@PathVariable Long id) {
+        return kasjerService.obliczWynagrodzenie(id, LocalDate.now().minusDays(30), LocalDate.now());
     }
 
     @PutMapping("/kasjerzy/{id}")

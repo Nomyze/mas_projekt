@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -20,6 +21,15 @@ public class OsobaService {
         this.kupionyKarnetRepository = kupionyKarnetRepository;
     }
 
+    public List<Osoba> getAll() {
+        return osobaRepository.findAll();
+    }
+    public List<Osoba> getAllKlient() {
+        List<Osoba> osobaList = osobaRepository.findAll();
+        return osobaList.stream().filter((os) -> {
+            return os.getOsobaType().contains(OsobaType.Klient);
+        }).toList();
+    }
     public Osoba getOsoba(long id) {
         return osobaRepository.findById(id).orElse(null);
     }

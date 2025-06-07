@@ -1,6 +1,6 @@
 package org.example.projekt_mas.controller;
 
-import org.example.projekt_mas.DTOs.KarnetDTO;
+import org.example.projekt_mas.DTOs.BaseKarnetDTO;
 import org.example.projekt_mas.service.KarnetService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +17,7 @@ public class KarnetController {
     }
 
     @GetMapping("/karnety")
-    public List<KarnetDTO> getKarnety() {
-        return KarnetDTO.fromKarnetSet(new HashSet<>(karnetService.getAllKarnets()));
+    public List<BaseKarnetDTO> getKarnety() {
+        return BaseKarnetDTO.fromKarnetSet(new HashSet<>(karnetService.getAllKarnets()));
     }
 }

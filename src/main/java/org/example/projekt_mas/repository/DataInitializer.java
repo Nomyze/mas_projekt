@@ -18,6 +18,7 @@ public class DataInitializer {
     private final KarnetService karnetService;
     private final OsobaService osobaService;
     private final KasjerService kasjerService;
+    private final Kupiony_karnetRepository kupionyKarnetRepository;
 
     @EventListener(ContextRefreshedEvent.class)
     public void atStart(ContextRefreshedEvent contextRefreshedEvent) {
@@ -26,7 +27,13 @@ public class DataInitializer {
         Karnet karnet2 = karnetService.createKarnet(500.0, 60);
         Osoba klient1 = osobaService.zarejestrujKlienta("Imie1", "Nazwisko1", "email1@example.org");
         //Kupiony_karnet kk = kupiony_karnetService.createKupiony_karnet(klient1.getId(), karnet.getId());
+        Kupiony_karnet kk = Kupiony_karnet.builder()
+                .klient(klient1)
+                .karnet(karnet)
+                .build();
+        kupionyKarnetRepository.save(kk);
 
+        Osoba klient2 = osobaService.zarejestrujKlienta("Adam", "Kowalski", "asdf@asdf.asdf");
         //wejscieService.przetworzWejscie((long) klient1.getId());
 
         Kasjer kasjer = kasjerService.createKasjer("aaa", "bbb", "a@b.c", 3.0, LocalDate.now());

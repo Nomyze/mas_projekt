@@ -8,13 +8,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class KarnetDTO {
-    public long id;
-    public Integer dlugosc;
-    public Double cena;
+public class KarnetDTO extends BaseKarnetDTO{
     public Set<Kupiony_karnetDTO> kupioneEgzemplarze;
 
-    public static List<KarnetDTO> fromKarnetSet(Set<Karnet> karnetList) {
+    public static List<KarnetDTO> fromKarnetSetToKarnetWithMeta(Set<Karnet> karnetList) {
         List<KarnetDTO> karnets = new ArrayList<>();
         for(Karnet k : karnetList) {
             KarnetDTO karnetDTO = new KarnetDTO();
@@ -28,7 +25,7 @@ public class KarnetDTO {
                 kkDTO.dataOd = kk.getDataOd();
                 kkDTO.dataDo = kk.getDataDo();
                 kkDTO.iloscKupiony = kk.getIloscKupiony();
-                kkDTO.klient_id = kk.getKarnet().getId();
+                kkDTO.klient_id = kk.getKlient().getId();
                 kkDTO.karnet_id = kk.getKarnet().getId();
                 karnetDTO.kupioneEgzemplarze.add(kkDTO);
             }
