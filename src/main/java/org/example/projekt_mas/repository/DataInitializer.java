@@ -31,7 +31,13 @@ public class DataInitializer {
                 .klient(klient1)
                 .karnet(karnet)
                 .build();
+        Kupiony_karnet kk2 = Kupiony_karnet.builder()
+                .klient(klient1)
+                .karnet(karnet2)
+                .dataOd(LocalDate.of(2024, 6, 1))
+                .build();
         kupionyKarnetRepository.save(kk);
+        kupionyKarnetRepository.save(kk2);
 
         Osoba klient2 = osobaService.zarejestrujKlienta("Adam", "Kowalski", "asdf@asdf.asdf");
         //wejscieService.przetworzWejscie((long) klient1.getId());

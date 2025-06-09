@@ -16,8 +16,8 @@ public class InstruktorController {
     }
 
     @GetMapping("/instruktorzy/{id}/wynagrodzenie")
-    Double obliczWynagrodzenie(@PathVariable Long id, @RequestBody LocalDate from, @RequestBody LocalDate to) {
-        return instruktorService.obliczWynagrodzenie(id, from, to);
+    Double obliczWynagrodzenie(@PathVariable Long id) {
+        return instruktorService.obliczWynagrodzenie(id, LocalDate.now().minusDays(30), LocalDate.now());
     }
 
     @PutMapping("/instruktorzy/{id}")
